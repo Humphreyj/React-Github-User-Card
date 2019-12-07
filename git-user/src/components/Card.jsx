@@ -4,7 +4,12 @@ import styled from 'styled-components';
 const Card = (props) => {
 
     const Card = styled.div`
-    width: 100%;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     display: flex;
     border-radius: 5px;
@@ -12,12 +17,20 @@ const Card = (props) => {
     background-color: #FFF;
     margin-bottom: 30px;
 
+        div {
+            
+    }
+
         img {
-            width: 150px;
-            height: 150px;
+            width: 50%;
+            
             border-radius: 3px;
             margin-right: 20px;  
         }
+    `
+    const Chart = styled.img`
+    
+    width: 20em;
     `
     return (
         <Card className='card'>
@@ -25,14 +38,16 @@ const Card = (props) => {
   <div className="card-info">
     <h3 className="name">{props.name}</h3>
     <p className="username">{props.username}</p>
-    <p>Location: {props.location} </p>
+    <p>Location: {props.location === null ? "No location provided." : props.location} </p>
     <p>
       <a href={props.profile}>{props.profile}</a>
     </p>
     <p>Followers: {props.followers} </p>
     <p>Following: {props.following} </p>
-    <p>Bio: {props.bio} </p>
+    
   </div>
+
+  <Chart src={`http://ghchart.rshah.org/${props.username}`} alt={`${props.username}'s chart`} />
         </Card>
     );
 }

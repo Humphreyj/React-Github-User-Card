@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import Card from './components/Card';
+import styled from 'styled-components';
 
 class App extends React.Component {
   constructor() {
@@ -26,6 +27,8 @@ class App extends React.Component {
      console.log(userData);
     console.log(res.data.avatar_url);
     this.setState({user : res.data})
+    
+    
     
 
     return axios 
@@ -66,10 +69,15 @@ class App extends React.Component {
 
   render() {
 
+    const AppWrap = styled.div`
+    padding: 5%;
+    background-color: #111;
+    `
+
     console.log(this.state.user);
     console.log(this.state.followers);
     return (
-      <div className="App">
+      <AppWrap className="App">
         <Card
         avatar={this.state.user.avatar_url} 
         name={this.state.user.name}
@@ -78,6 +86,7 @@ class App extends React.Component {
         profile={this.state.user.html_url}
         followers={this.state.user.followers}
         following={this.state.user.following}
+        bio={this.state.user.bio}
          />
 
          {
@@ -92,11 +101,12 @@ class App extends React.Component {
               profile={follower.html_url}
               followers={follower.followers}
               following={follower.following}
+              bio={follower.bio}
                />
              )
            })
          }
-      </div>
+      </AppWrap>
     );
   }
   
